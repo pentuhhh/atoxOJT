@@ -53,3 +53,5 @@ if mydb.is_connected():
         mydb.commit()
     cursor.close()
     mydb.close()
+    
+# March 29. 2023 Exercise
