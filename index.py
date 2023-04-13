@@ -6,11 +6,11 @@ mydb = mysql.connector.connect(
     password="root",
     database="daDB1"    
 )
+def repeat():
+    if mydb.is_connected():
+        print("you are connected my nigga")
 
-if mydb.is_connected():
-    print("you are connected my nigga")
-
-    mode = input("LOGIN/REGISTER/DELETE?: ")
+        mode = input("LOGIN/REGISTER/DELETE?: ")
 
     if mode == "REGISTER" or "register":
         print("register")
@@ -23,7 +23,11 @@ if mydb.is_connected():
         cursor = mydb.cursor()
         cursor.execute(cmd, userdata)
 
-    if mode == "DELETE" or "delete":
+        mydb.commit()
+        cursor.close()
+        mydb.close()
+
+    elif mode == "DELETE" or "delete":
         print("delete")
         IDnum = input("Enter ID number: ")
 
@@ -31,18 +35,16 @@ if mydb.is_connected():
         selected = (IDnum)
         cursor = mydb.cursor()
         cursor.execute(cmd,IDnum)
-    else:
-        print("Invalid")
+        mydb.commit()
+        cursor.close()
+        mydb.close()
+repeat()
 
-    # mydb.commit()
-    # cursor.close()
-    # mydb.close()
-        
+
+
+
+
     
-
-    
-
-        
 
 
 
@@ -68,8 +70,7 @@ if mydb.is_connected():
     #     print("Failed")
     #     exit
     # print("Success")
-else:
-    print("wonk wonk")
+
 
 
 
